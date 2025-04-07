@@ -17,7 +17,7 @@ plugins:
         path: /Invoice
         method: GET
         headers:
-          Authorization: "ec12106187cc7ba98133b92bfa76c4b2"
+          Authorization: "api_key"
         records_path: $.objects[*]
   loaders:
   - name: target-jsonl
