@@ -69,10 +69,10 @@ meltano.yml
 ### 3. Data Transformation
 - Trigger: Dagster triggers the dbt transformation jobs to run directly on Snowflake
 - Transformation: dbt models will clean and reshape this raw data to meet business requirements. The transformations can include aggregations, filtering, or creating new dimensions
-- Output: cleaned data into `SEVDESK.staging.invoices_stg`, curated data into `analytics.invoice_summary` for e.g (business-ready models)
+- Output: cleaned data into `SEVDESK.staging.invoices_stg`, curated data into `analytics.invoices_summary` for e.g (business-ready models)
 
 ### 4. Data amalytics
-- Looker Integration: Looker can directly query `analytics.invoice_summary` in Snowflake for business intelligence and analytics reporting
+- Looker Integration: Looker can directly query `analytics.invoices_summary` in Snowflake for business intelligence and analytics reporting
 - Ouput: insight extraction from the data into dashboard
 
 ### 5. Monitoring and alerting
@@ -85,8 +85,11 @@ The Finance or Sales team wants a dashboard that shows:
 - Updated every hour
 
 1. Invoice data is ingested using maltano extractor triggered every hour by dagster
+
 2. Data is loaded into snowflage raw schema
-3. dbt staging models clean fields, cast types, convert ammount to the same currency, create a new table `analytics.invoice_amount_by_city`
+![alt text](invoices.png)
+3. dbt staging models clean fields, cast types, convert ammount to the same currency, create a new table `analytics.invoices_amount_by_city`
+![alt text](invoices_city.png)
 4. Looker query the table in snowflake to generate a dashboard 
 5. Dagter sends a notification in case one of the pipeline failed so that the finance team knows the dashboard is outdated
 
