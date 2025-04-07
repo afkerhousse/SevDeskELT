@@ -11,24 +11,18 @@ plugins:
     variant: widen
     pip_url: tap-rest-api-msdk
     config:
-      api_url: "https://my.sevdesk.de/api/v1"
-      headers:
-        Authorization: "{{ env('SEVDESK_API_KEY') }}"
-        
+      api_url: https://my.sevdesk.de/api/v1
       streams:
-      - name: "invoice"
-        path: "/Invoice"
-        method: "GET"
-        records_path: "objects"
+      - name: invoice
+        path: /Invoice
+        method: GET
+        headers:
+          Authorization: "ec12106187cc7ba98133b92bfa76c4b2"
+        records_path: $.objects[*]
   loaders:
+  - name: target-jsonl
+    variant: andyh1203
+    pip_url: target-jsonl
   - name: target-snowflake
     variant: meltanolabs
     pip_url: meltanolabs-target-snowflake
-    config:
-      user: "{{ env_var('SNOWFLAKE_USER') }}"
-      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
-      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
-      warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE') }}"
-      database: "{{ env_var('SNOWFLAKE_DATABASE') }}"
-      schema: "{{ env_var('SNOWFLAKE_SCHEMA') }}"
-      role: "{{ env_var('SNOWFLAKE_ROLE') }}"
