@@ -69,7 +69,7 @@ meltano.yml
 ### 3. Data Transformation
 - Trigger: Dagster triggers the dbt transformation jobs to run directly on Snowflake
 - Transformation: dbt models will clean and reshape this raw data to meet business requirements. The transformations can include aggregations, filtering, or creating new dimensions
-- Output: cleaned data into `SEVDESK.staging.invoices_stg`, curated data into `analytics.invoice_summary` (business-ready models)
+- Output: cleaned data into `SEVDESK.staging.invoices_stg`, curated data into `analytics.invoice_summary` for e.g (business-ready models)
 
 ### 4. Data amalytics
 - Looker Integration: Looker can directly query `analytics.invoice_summary` in Snowflake for business intelligence and analytics reporting
