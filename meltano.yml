@@ -1,7 +1,6 @@
 version: 1
 default_environment: dev
 project_id: b8eae7cd-2cab-4af4-b478-ad97017fdbae
-name: meltano_project
 environments:
 - name: dev
 - name: staging
