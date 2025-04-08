@@ -1,6 +1,7 @@
 version: 1
 default_environment: dev
 project_id: b8eae7cd-2cab-4af4-b478-ad97017fdbae
+name: meltano_project
 environments:
 - name: dev
 - name: staging
@@ -13,12 +14,13 @@ plugins:
     config:
       api_url: https://my.sevdesk.de/api/v1
       streams:
-      - name: invoice
+      - name: invoices
         path: /Invoice
         method: GET
         headers:
-          Authorization: "api_key"
+          Authorization: ${SEVDESK_API_KEY}
         records_path: $.objects[*]
+
   loaders:
   - name: target-jsonl
     variant: andyh1203
@@ -26,3 +28,10 @@ plugins:
   - name: target-snowflake
     variant: meltanolabs
     pip_url: meltanolabs-target-snowflake
+    config:
+      user: ${SNOWFLAKE_USER}
+      password: ${SNOWFLAKE_PASSWORD}
+      account: ${SNOWFLAKE_ACCOUNT}
+      warehouse: COMPUTE_WH
+      database: SEVDESK
+      schema: RAW
