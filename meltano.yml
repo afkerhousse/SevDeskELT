@@ -9,7 +9,7 @@ plugins:
   extractors:
   - name: tap-rest-api-msdk
     variant: widen
-    pip_url: tap-rest-api-msdk
+    pip_url: tap-rest-api-msdk requests
     config:
       api_url: https://my.sevdesk.de/api/v1
       streams:
